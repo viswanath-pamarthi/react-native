@@ -1,11 +1,12 @@
-import { View, Text, StyleSheet, FlatList, Alert } from "react-native"
+import { View, Text, StyleSheet, FlatList, Alert, Pressable } from "react-native"
 import Header from "../components/Header";
 import uuid from "react-native-uuid";
 import ListItem from "../components/ListItem";
 import AddItem from "../components/AddItem";
 import React, { useState } from "react";
+import { Button } from "react-native-vector-icons/dist/FontAwesome";
 
-const ShoppingListScreen = () => {
+const ShoppingListScreen = ({ navigation }) => {
 
     const [items, setItems] = useState([
         { id: uuid.v4(), text: 'Milk' },
@@ -34,6 +35,7 @@ const ShoppingListScreen = () => {
     return (
         <View style={styles.container}>
             <Header title="Shopping List" />
+            <Pressable title="test" onPress={() => { navigation.navigate('Home') }} />
             <AddItem addItem={addItem} />
             <FlatList data={items} renderItem={
                 ({ item }) => <ListItem item={item} deleteItem={deleteItem} />
