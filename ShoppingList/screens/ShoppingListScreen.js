@@ -32,17 +32,16 @@ const ShoppingListScreen = ({ navigation }) => {
         }
     };
 
-    return (
-        <View style={styles.container}>
-            <Header title="Shopping List" />
-            <Pressable title="test" onPress={() => { navigation.navigate('Home') }} />
-            <AddItem addItem={addItem} />
-            <FlatList data={items} renderItem={
-                ({ item }) => <ListItem item={item} deleteItem={deleteItem} />
-            }
-            />
-        </View >
-    );
+    return <View style={styles.container}>
+        <Header title="Shopping List" />
+        <Pressable title="test" onPress={() => { navigation.navigate('Home') }} />
+        <AddItem addItem={addItem} />
+        <FlatList data={items} renderItem={
+            ({ item }) => <ListItem item={item} deleteItem={deleteItem} />
+        }
+        />
+    </View >
+
 }
 
 const styles = StyleSheet.create({

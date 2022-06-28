@@ -1,30 +1,39 @@
 import React from "react";
-import { Text, View, StyleSheet, Pressable, TouchableNativeFeedback, TouchableOpacity, TouchableHighlight, TouchableWithoutFeedback } from "react-native";
+import { Text, View, StyleSheet, Pressable, TouchableNativeFeedback, TouchableOpacity, TouchableHighlight, TouchableWithoutFeedback, ScrollView } from "react-native";
 import { Button } from "react-native";
 
 const HomeScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
-            <Button title="Shopping List" style={[styles.buttonStyle, { marginVertical: 20 }]} onPress={() => {
-                navigation.navigate('ShoppingList');
-            }} >
-                test
-            </Button>
-            <TouchableNativeFeedback style={[styles.buttonStyle]}>
-                <Text style={styles.text}>TouchableNativeFeedback</Text>
-            </TouchableNativeFeedback>
-            <TouchableOpacity style={[styles.buttonStyle, { marginVertical: 20 }]}>
-                <Text style={styles.text}>TouchableOpacity</Text>
-            </TouchableOpacity>
-            <TouchableHighlight style={[styles.buttonStyle, { marginTop: 0, marginBottom: 10 }]}>
-                <Text style={styles.text}>TouchableHighlight</Text>
-            </TouchableHighlight>
-            <TouchableWithoutFeedback style={[styles.buttonStyle, { marginTop: 0 }]}>
-                <Text>
-                    TouchableWithoutFeedback
-                </Text>
-            </TouchableWithoutFeedback>
+            <ScrollView>
+                <Button title="Shopping List" style={[styles.buttonStyle, { marginVertical: 20 }]} onPress={() => {
+                    navigation.navigate('ShoppingList');
+                }} >
+                    test
+                </Button>
+                <Button title="Box Screen Demo" onPress={() => {
+                    navigation.navigate('BoxScreen');
+                }} />
+                <Button title="FlexBox Demo" onPress={() => {
+                    navigation.navigate('FlexBoxScreen');
+                }} />
+                <TouchableNativeFeedback style={[styles.buttonStyle]}>
+                    <Text style={styles.text}>TouchableNativeFeedback</Text>
+                </TouchableNativeFeedback>
+                <TouchableOpacity style={[styles.buttonStyle, { marginVertical: 20 }]}>
+                    <Text style={styles.text}>TouchableOpacity</Text>
+                </TouchableOpacity>
+                <TouchableHighlight style={[styles.buttonStyle, { marginTop: 0, marginBottom: 10 }]}>
+                    <Text style={styles.text}>TouchableHighlight</Text>
+                </TouchableHighlight>
+                <TouchableWithoutFeedback style={[styles.buttonStyle, { marginTop: 0 }]}>
+                    <Text>
+                        TouchableWithoutFeedback
+                    </Text>
+                </TouchableWithoutFeedback>
+            </ScrollView>
         </View >
+
     );
 }
 
