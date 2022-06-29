@@ -15,6 +15,10 @@ const blogReducer = (state, action) => {
                 title: action.payload.title,
                 content: action.payload.content
             }];
+        case 'update_blogpost':
+            return state.map((blogPost) => {
+                return blogPost.id === action.payload.id ? action.payload : blogPost;
+            });
         default:
             return state;
     }
@@ -79,11 +83,27 @@ const deleteBlogPost = (dispatch) => {
     };
 };
 
+const updateBlogPost = (dispatch) => {
+    return (id, title, content, callback) => {
+        dispatch({
+            type: "update_blogpost",
+            payload: {
+                id: id,
+                title: title,
+                content: content
+            }
+        });
+        if (callback)
+            callback();
+    };
+}
+
 //exporting named variables, COntext and provider
 export const { Context, Provider } = createDataContext(blogReducer,
     {
         addBlogPost: addBlogPost, //can be written just {addBlogPost}
-        deleteBlogPost
+        deleteBlogPost,
+        updateBlogPost
     },
-    [])
+    [{ title: 'FFff', content: 'dfdgfd' }])
 // export default BlogContext;
