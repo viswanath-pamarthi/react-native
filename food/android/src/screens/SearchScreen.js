@@ -4,7 +4,7 @@ import SearchBar from "../components/SearchBar";
 import useResults from "../hooks/useResults";
 import ResultsList from "../components/ResultsList";
 
-const SearchScreen = () => {
+const SearchScreen = ({ navigation }) => {
     const [term, setTerm] = useState('');
     const [searchApi, results, errorMessage] = useResults();
     const filterResultsByPrice = (price) => {
@@ -15,7 +15,8 @@ const SearchScreen = () => {
 
     };
     return (
-        <View style={styles.viewStyle}>
+        // <View style={styles.viewStyle}>
+        <>
             <SearchBar term={term}
                 onTermChange={setTerm} //{/* shorthand for ->..(newterm) => { setTerm(newterm) }*/}
                 onTermSubmit={() => searchApi(term)} />
@@ -26,7 +27,8 @@ const SearchScreen = () => {
                 <ResultsList results={filterResultsByPrice('$$')} title="Bit  Pricier" />
                 <ResultsList results={filterResultsByPrice('$$$')} title="Big  Spender" />
             </ScrollView>
-        </View>
+        </>
+        // </View>
     );
 }
 

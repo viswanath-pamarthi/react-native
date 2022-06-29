@@ -1,12 +1,15 @@
 import React from "react"
-import { View, Text, Image, StyleSheet } from "react-native"
+import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native"
 
 const ResultsDetail = ({ result }) => {
-    return <View style={styles.container}>
-        <Image style={styles.image} source={{ uri: result.image_url }} />
-        <Text style={styles.name}> {result.name}</Text>
-        <Text>{result.rating} Starts, {result.review_count}</Text>
-    </View>
+
+    return (
+        <View style={styles.container}>
+            <Image style={styles.image} source={{ uri: result.image_url }} />
+            <Text style={styles.name}> {result.name}</Text>
+            <Text>{result.rating} Starts, {result.review_count}</Text>
+        </View>
+    )
 };
 
 const styles = StyleSheet.create({
