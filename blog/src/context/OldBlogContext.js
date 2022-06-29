@@ -1,9 +1,9 @@
-import createDataContext from "./createDataContext";
+import React, { useReducer } from "react";
 
 //Using contexts to avoid pass a chain of data from parent to child screens( or a chind of child screens), with context(global state) we can pass the data to any child in deep navigation from context- here blogpovider
 //we will wrap app with blogContext here
 
-// const BlogContext = React.createContext();
+const BlogContext = React.createContext();
 const blogReducer = (state, action) => {
 
     switch (action.type) {
@@ -25,7 +25,7 @@ const App=()=>{
 */
 //we are not using export default, just export(a named export). we will do expor default for BlogContext
 //So inorder to import BlogProvider we need to use curly braces like import {BlogProvider}
-/*export const BlogProvider = ({ children }) => {
+export const BlogProvider1 = ({ children }) => {
 
     const [blogPosts, dispatch] = useReducer(blogReducer, []);//useReducer will always returns state here blogPosts
     // const blogPosts = [
@@ -49,14 +49,6 @@ const App=()=>{
     }}>
         {children}
     </BlogContext.Provider>
-};*/
+};
 
-const addBlogPost = () => {
-    // setBlogPost([...blogPosts, { title: `Blog Post #${blogPosts.length + 1}` }])
-    dispatch({ type: 'add_blogpost' });
-}
-
-export const { Context, Provider } = createDataContext(blogReducer,
-    { addBlogPost },
-    [])
-// export default BlogContext;
+export default BlogContext1;
