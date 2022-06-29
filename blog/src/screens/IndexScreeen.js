@@ -4,7 +4,8 @@ import { Context as BlogContext, Provider } from "../context/BlogContext";//can 
 import Icon from "react-native-vector-icons/dist/Feather";
 
 //Anything that talks about re render the app when data changes over time in react , we are always talking about State (creatting a state variable)
-const IndexScreen = () => {
+const IndexScreen = ({ navigation }) => {
+    // console.log(props);
     //left hand side, array destructuring - javascript
     const { state, addBlogPost, deleteBlogPost } = useContext(BlogContext);// useContext is getting the data from Blog provider
 
@@ -16,14 +17,18 @@ const IndexScreen = () => {
                 keyExtractor={(blogPost) => blogPost.title}
                 renderItem={({ item }) => {
                     return (
-                        <View style={styles.row}>
-                            <Text style={styles.title}>{item.title} - {item.id}</Text>
-                            <TouchableOpacity onPress={() => {
-                                deleteBlogPost(item.id);
-                            }}>
-                                <Icon name="trash" style={styles.icon} />
-                            </TouchableOpacity>
-                        </View>
+                        <TouchableOpacity onPress={() => {
+                            navigation.navigate('Show', { id: item.id });
+                        }}>
+                            <View style={styles.row}>
+                                <Text style={styles.title}>{item.title} - {item.id}</Text>
+                                <TouchableOpacity onPress={() => {
+                                    deleteBlogPost(item.id);
+                                }}>
+                                    <Icon name="trash" style={styles.icon} />
+                                </TouchableOpacity>
+                            </View>
+                        </TouchableOpacity>
                     );
                 }}
             />
