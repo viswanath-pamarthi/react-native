@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import IndexScreen from "./src/screens/IndexScreeen";
-import { BlogProvider } from "./src/context/BlogContext";
+import { Provider } from "./src/context/BlogContext";
 
 const Stack = createNativeStackNavigator();
 
@@ -19,7 +19,7 @@ const App = () => {
 };
 
 export default () => {
-  return <BlogProvider>
+  return <Provider>
     <App />
-  </BlogProvider>;
+  </Provider>;
 };

@@ -51,12 +51,15 @@ const App=()=>{
     </BlogContext.Provider>
 };*/
 
-const addBlogPost = () => {
+const addBlogPost = (dispatch) => {
     // setBlogPost([...blogPosts, { title: `Blog Post #${blogPosts.length + 1}` }])
-    dispatch({ type: 'add_blogpost' });
+    return () => {
+        dispatch({ type: 'add_blogpost' });
+    };
 }
 
+//exporting named variables, COntext and provider
 export const { Context, Provider } = createDataContext(blogReducer,
-    { addBlogPost },
+    { addBlogPost: addBlogPost },//cab be written just {addBlogPost}
     [])
 // export default BlogContext;
