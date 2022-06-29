@@ -18,8 +18,13 @@ const App=()=>{
 //we are not using export default, just export(a named export). we will do expor default for BlogContext
 //So inorder to import BlogProvider we need to use curly braces like import {BlogProvider}
 export const BlogProvider = ({ children }) => {
+    const blogPosts = [
+        { title: 'Blog Post #1' },
+        { title: 'Blog Post #2' }
+    ];
+
     // return <BlogContext.Provider value={5}> this value= 5 with provider can be shared with with deep nested navigated child in the navigation stack. in other ways provider is the source for data
-    return <BlogContext.Provider value={5}>
+    return <BlogContext.Provider value={blogPosts}>
         {children}
     </BlogContext.Provider>
 };
