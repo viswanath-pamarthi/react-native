@@ -1,21 +1,36 @@
 import React, { useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
-// import { Icon } from "react-native-vector-icons/Icon";
 import SearchBar from "../components/SearchBar";
-// import { Icon } from "react-native-vector-icons/Feather"
 import Icon from "react-native-vector-icons/dist/FontAwesome";
+import yelp from "../api/yelp";
+
 const SearchScreen = () => {
     const [term, setTerm] = useState('');
+    const [results, setResults] = useState('');
+
+    const searchApi = async () => {
+        // console.log(term);
+
+        const response = await yelp.get('/search', {
+            params: {//query strings
+                limit: 50,
+                // term: term
+                term,//short hand as api and the variable are same name
+                location: "san jose"
+            }
+        });
+        setResults(response.data.businesses);
+    };
 
     return (
         <View style={styles.viewStyle}>
             <SearchBar term={term}
                 onTermChange={(newterm) => { setTerm(newterm) }}
-                onTermSubmit={() => { }} />
+                onTermSubmit={searchApi} />{/* shorthand for ->....() => { searchApi() }*/}
             {/* <Icon name="search" size={30} > */}
             <Text >Search Screen</Text>
             {/* </Icon> */}
-            <Text>{term}</Text>
+            <Text> We have found {results.length}</Text>
         </View>
     );
 }
