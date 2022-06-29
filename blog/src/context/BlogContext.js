@@ -12,7 +12,8 @@ const blogReducer = (state, action) => {
         case 'add_blogpost':
             return [...state, {
                 id: Math.floor(Math.random() * 99999),
-                title: `Blog Post #${state.length + 1}`
+                title: action.payload.title,
+                content: action.payload.content
             }];
         default:
             return state;
@@ -58,8 +59,16 @@ const App=()=>{
 
 const addBlogPost = (dispatch) => {
     // setBlogPost([...blogPosts, { title: `Blog Post #${blogPosts.length + 1}` }])
-    return () => {
-        dispatch({ type: 'add_blogpost' });
+    return async (title, content, callback) => {
+        try {
+            // await axio.post('endpoint, title, content)//can do a service call like this
+            dispatch({ type: 'add_blogpost', payload: { title: title, content: content } });// call dispatch and then call navigate to previous screen when no error
+            callback();
+        }
+        catch (e) {
+
+        }
+
     };
 }
 
