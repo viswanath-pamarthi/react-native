@@ -3,8 +3,8 @@
 import React from "react";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import SearchScreen from "./android/src/screens/SearchScreen";
-import ResultsShowScreen from "./android/src/screens/ResultsShowScreen";
+import SearchScreen from "./src/screens/SearchScreen";
+import ResultsShowScreen from "./src/screens/ResultsShowScreen";
 
 const Stack = createNativeStackNavigator();
 
