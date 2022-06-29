@@ -1,11 +1,12 @@
 import React, { useContext } from "react";//UseContext hook is used to look at context object and  give us access to the data shared by the context provider
-import { StyleSheet, View, Text, FlatList, Button } from "react-native";
+import { StyleSheet, View, Text, FlatList, Button, TouchableOpacity } from "react-native";
 import { Context as BlogContext, Provider } from "../context/BlogContext";//can create an alias for vairables if needed with as keyword
-import Icon from "react-native-vector-icons/dist/Feather"
+import Icon from "react-native-vector-icons/dist/Feather";
+
 //Anything that talks about re render the app when data changes over time in react , we are always talking about State (creatting a state variable)
 const IndexScreen = () => {
     //left hand side, array destructuring - javascript
-    const { state, addBlogPost } = useContext(BlogContext);// useContext is getting the data from Blog provider
+    const { state, addBlogPost, deleteBlogPost } = useContext(BlogContext);// useContext is getting the data from Blog provider
 
     return (
         <View>
@@ -16,8 +17,12 @@ const IndexScreen = () => {
                 renderItem={({ item }) => {
                     return (
                         <View style={styles.row}>
-                            <Text style={styles.title}>{item.title}</Text>
-                            <Icon name="trash" style={styles.icon} />
+                            <Text style={styles.title}>{item.title} - {item.id}</Text>
+                            <TouchableOpacity onPress={() => {
+                                deleteBlogPost(item.id);
+                            }}>
+                                <Icon name="trash" style={styles.icon} />
+                            </TouchableOpacity>
                         </View>
                     );
                 }}
