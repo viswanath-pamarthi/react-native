@@ -23,3 +23,17 @@ kill -9 PID
 List all available iOS devices:
 xcrun simctl list devices
 npx react-native run-ios --port=8085 --simulator="iPhone 11 (14.5)" 
+
+Blog App:
+    npx react-native start --port=8085
+    npx react-native run-ios --port=8085
+    npx react-native run-android --port=8085
+
+    json-server directory and run to start json-server:
+    npm run db
+
+    run ngrok(tunnels localhost - by default json-server runs on 3000 port
+    ngrok http 3000
+    
+
+
