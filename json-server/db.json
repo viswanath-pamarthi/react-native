@@ -1,3 +1,39 @@
 {
-    "blogposts": []
+  "blogposts": [
+    {
+      "id": 1,
+      "title": "API POST",
+      "content": "content for my post"
+    },
+    {
+      "title": "test",
+      "content": "tset",
+      "id": 2
+    },
+    {
+      "title": "Updated - 444444",
+      "content": "4444444",
+      "id": 4
+    },
+    {
+      "title": "dfgdg",
+      "content": "gfdgdfg",
+      "id": 6
+    },
+    {
+      "title": "Updated777",
+      "content": "7777",
+      "id": 7
+    },
+    {
+      "title": "88888",
+      "content": "88888",
+      "id": 8
+    },
+    {
+      "title": "9999",
+      "content": "99",
+      "id": 9
+    }
+  ]
 }

@@ -20,6 +20,9 @@ const blogReducer = (state, action) => {
             return state.map((blogPost) => {
                 return blogPost.id === action.payload.id ? action.payload : blogPost;
             });
+        case 'get_blogposts':
+            // console.log(action.payload);
+            return action.payload;
         default:
             return state;
     }
@@ -62,13 +65,28 @@ const App=()=>{
     </BlogContext.Provider>
 };*/
 
+const getBlogPosts = dispatch => {
+
+    return async () => {
+        const response = await jsonServer.get('/blogposts');
+        // console.log(`This is the return data: ${response.data}`);
+        dispatch({ type: 'get_blogposts', payload: response.data })
+    };
+};
+
+
 const addBlogPost = (dispatch) => {
     // setBlogPost([...blogPosts, { title: `Blog Post #${blogPosts.length + 1}` }])
     return async (title, content, callback) => {
         try {
+            await jsonServer.post('/blogposts', {
+                title: title,
+                content: content
+            });
             // await axio.post('endpoint, title, content)//can do a service call like this
-            dispatch({ type: 'add_blogpost', payload: { title: title, content: content } });// call dispatch and then call navigate to previous screen when no error
-            callback();
+            // dispatch({ type: 'add_blogpost', payload: { title: title, content: content } });// call dispatch and then call navigate to previous screen when no error
+            if (callback)
+                callback();
         }
         catch (e) {
 
@@ -79,13 +97,15 @@ const addBlogPost = (dispatch) => {
 
 const deleteBlogPost = (dispatch) => {
 
-    return (id) => {
+    return async (id) => {
+        await jsonServer.delete(`/blogposts/${id}`);
         dispatch({ type: 'delete_blogpost', payload: id });
     };
 };
 
 const updateBlogPost = (dispatch) => {
-    return (id, title, content, callback) => {
+    return async (id, title, content, callback) => {
+        await jsonServer.put(`/blogposts/${id}`, { title: title, content: content })
         dispatch({
             type: "update_blogpost",
             payload: {
@@ -104,7 +124,8 @@ export const { Context, Provider } = createDataContext(blogReducer,
     {
         addBlogPost: addBlogPost, //can be written just {addBlogPost}
         deleteBlogPost,
-        updateBlogPost
+        updateBlogPost,
+        getBlogPosts
     },
-    [{ title: 'FFff', content: 'dfdgfd' }])
+    [])
 // export default BlogContext;
