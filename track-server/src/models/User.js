@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
 //this is referred as pre save hook, it ran before we attempt to save an instance of user in to our database
 // we passed the second parameter to pre a "function" keyword function instead of a arrow based function. Because we have to use this (user instance) keyword inside the function, and if we use arrow function "this" would refer this User.Js
 //instead of the user instance
-userSchema.pre('save', function () {
+userSchema.pre('save', function (next) {
     const user = this;
 
     if (!user.isModified('password')) {
